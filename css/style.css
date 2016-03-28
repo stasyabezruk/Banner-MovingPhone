@@ -1,0 +1,36 @@
+*{
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+#container {
+	position: relative;	
+	width: 970px;
+	height: 250px;
+	top: 0px;
+	left: 0px;
+	border: 1px solid black;	
+	background: #FFF;
+	overflow: hidden;
+	background-image: url(loading.jpg);
+}
+
+#phone-wrapper {
+	width: 514px;
+	height: 221px;
+	position: absolute;
+	top: 50%;
+    margin-top: -110.5px;
+    left: 150px;
+    background: url(../img/phone_sprite.png) no-repeat 0 0;
+}
+.dragBar-wrapper {
+	float: right;
+    transform: rotate(90deg);
+    position: absolute;
+    width: 134px;
+    right: 30px;
+    top: 100px;
+}
+
+
