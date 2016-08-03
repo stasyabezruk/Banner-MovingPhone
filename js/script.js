@@ -1,19 +1,25 @@
-window.onload = function() {
+var BannerPhone = (function () {
+	function Constructor (root) {
+		this.root = document.querySelector(root);
+		this.phone = this.root.querySelector('#phone-wrapper');
+		this.dragBar = this.root.querySelector('#dragBar');
+		this.scrollPhone();
+	}
 
-	(function () {
-		var phone = document.querySelector('#phone-wrapper'),
-			dragBar = document.querySelector('#dragBar');
+	Constructor.prototype.scrollPhone = function () {
+		var self = this;
 
-		dragBar.addEventListener('change', function () {
-			var valueDragBar = dragBar.value,
-				/*_tmp = window.getComputedStyle(phone,null).backgroundPosition.trim().split(/\s+/),
-				positions = {
-			        'left' : _tmp[0],
-			        'top' : _tmp[1]
-			    },*/
+		this.dragBar.addEventListener('input', function () {
+			var valueDragBar = self.dragBar.value,				
 			    newBgPos = -Number(221*valueDragBar);
-			    console.log(newBgPos);
-			phone.style.backgroundPositionY = newBgPos + 'px';
-		})
-	})();
+			    console.log(newBgPos);			    
+				self.phone.style.backgroundPositionY = newBgPos + 'px';
+		});
+	}
+
+	return Constructor;
+})();
+
+window.onload = function() {
+	var banner1 = new BannerPhone('#moving-phone');	
 }

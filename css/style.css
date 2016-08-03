@@ -3,8 +3,8 @@
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 }
-#container {
-	position: relative;	
+.container {
+	position: relative;
 	width: 970px;
 	height: 250px;
 	top: 0px;
@@ -12,25 +12,74 @@
 	border: 1px solid black;	
 	background: #FFF;
 	overflow: hidden;
-	background-image: url(loading.jpg);
+	padding: 15px 0 0 20px;	
 }
 
 #phone-wrapper {
-	width: 514px;
-	height: 221px;
-	position: absolute;
-	top: 50%;
-    margin-top: -110.5px;
-    left: 150px;
-    background: url(../img/phone_sprite.png) no-repeat 0 0;
+	width: 460px;
+	height: 220px;	
+    background: url(../img/phone_sprite.png) no-repeat -30px -3px;
+    float: left;
 }
 .dragBar-wrapper {
 	float: right;
     transform: rotate(90deg);
-    position: absolute;
-    width: 134px;
-    right: 30px;
-    top: 100px;
+    position: absolute;   
+    right: 75px;
+    top: 114px;
+}
+#dragBar {
+  -webkit-appearance: none;
+  width: 205px;
+  height: 1px;  
+  background: rgba(174,174,174,0.9);
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+#dragBar:hover,
+#dragBar:focus {
+	cursor: pointer;
+}
+#dragBar::-webkit-slider-thumb:hover, 
+#dragBar::-webkit-slider-thumb:focus {  
+	cursor: move;
+}
+#dragBar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: black;
+    cursor: pointer;
+    transition: background .15s ease-in-out;
 }
 
+.left-col { 
+	width: 280px;
+	float: left;
+}
 
+.header-wrapper,
+.text-wrapper {
+	float: left;
+	width: 100%;	
+}
+.samsLogo {
+	width: 75px;
+}
+.label img { 
+	max-width: 100%;
+}
+.galaxyLogo img {
+	position: relative;
+	left: -3px;
+}
+.text-wrapper .text-content {
+	height: 155px;
+    position: relative;
+}
+.text-content img {
+	position: absolute;
+    bottom: 0;
+}
