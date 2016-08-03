@@ -20,17 +20,27 @@
 	height: 220px;	
     background: url(../img/phone_sprite.png) no-repeat -30px -3px;
     float: left;
+    position: absolute;
+    top: 265px;
+    margin: auto;
+    left: 30px;
+    right: 0;
 }
 .dragBar-wrapper {
-	float: right;
-    transform: rotate(90deg);
-    position: absolute;   
-    right: 75px;
-    top: 114px;
+	position: absolute;
+    height: 205px;
+    width: 14px;
+    right: 205px;
+    top: 265px;
+}
+.dragBar-vertical {
+	transform: rotate(90deg);	
+	position: relative;
+	top: 10px;
 }
 #dragBar {
   -webkit-appearance: none;
-  width: 205px;
+  width: 200px;
   height: 1px;  
   background: rgba(174,174,174,0.9);
   outline: none;
@@ -78,6 +88,8 @@
 .text-wrapper .text-content {
 	height: 155px;
     position: relative;
+    opacity: 0;
+    transition: opacity 3s;
 }
 .text-content img {
 	position: absolute;

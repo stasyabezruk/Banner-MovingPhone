@@ -3,6 +3,10 @@ var BannerPhone = (function () {
 		this.root = document.querySelector(root);
 		this.phone = this.root.querySelector('#phone-wrapper');
 		this.dragBar = this.root.querySelector('#dragBar');
+		this.dragBarWrapper = this.root.querySelector('.dragBar-wrapper');
+		this.textContent = this.root.querySelector('.text-content');
+		
+		this.loadBanner();
 		this.scrollPhone();
 	}
 
@@ -15,7 +19,27 @@ var BannerPhone = (function () {
 			    console.log(newBgPos);			    
 				self.phone.style.backgroundPositionY = newBgPos + 'px';
 		});
-	}
+	};
+
+	Constructor.prototype.moveEl = function (el) {
+		el.style.top = parseInt(el.offsetTop) + (-5) + 'px';
+
+		var self = this,
+			animate = window.setTimeout ( function () {
+				self.moveEl(el);
+			}, 12);	
+		if (el.offsetTop == 15) {			
+			window.clearTimeout(animate);							
+		}
+	};
+
+	Constructor.prototype.loadBanner = function () {
+		var self = this;
+		
+		this.moveEl(this.phone);
+		var timeoutID = window.setTimeout(function () {self.moveEl(self.dragBarWrapper)}, 300);
+		this.textContent.style.opacity = '1';
+	};
 
 	return Constructor;
 })();
