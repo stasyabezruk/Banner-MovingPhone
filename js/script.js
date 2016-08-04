@@ -7,7 +7,7 @@ var BannerPhone = (function () {
 		this.dragText = this.root.querySelector('.label-wrapper');
 		this.buyBtn = this.root.querySelector('.buyBtn');		
 		this.textContent = this.root.querySelector('.text-content');
-
+		this.flash = this.root.querySelector('.flash img');
 		
 		this.loadBanner();
 		this.scrollPhone();		
@@ -26,7 +26,7 @@ var BannerPhone = (function () {
 				self.phone.style.backgroundPositionY = newBgPos + 'px';
 
 				//check the direction of input-range
-				if (newValRange > oldValRange) {	//to bottom
+				if ( newValRange > oldValRange ) {	//to bottom
 					
 					if (newValRange === '3') {						
 						self.fadeText('1');
@@ -52,6 +52,10 @@ var BannerPhone = (function () {
 					
 				}
 				oldValRange = newValRange;
+
+				if ( newValRange === '29' ) {
+					self.fadeInFlash();								
+				}
 		});
 	};
 
@@ -94,6 +98,13 @@ var BannerPhone = (function () {
 		}
 	};
 
+	/*flash*/
+	Constructor.prototype.fadeInFlash = function () {
+		var self = this;
+		this.flash.style.animation = 'fadeInFlash .3s ease-in-out';
+		var timeoutID = window.setTimeout(function () {self.flash.style.animation = ''}, 300);
+	};
+	
 
 	return Constructor;
 })();

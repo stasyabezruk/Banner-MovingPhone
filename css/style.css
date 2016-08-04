@@ -13,6 +13,7 @@
 	background: #FFF;
 	overflow: hidden;
 	padding: 15px 0 0 20px;	
+	cursor: pointer;
 }
 
 #phone-wrapper {
@@ -31,12 +32,13 @@
     height: 205px;
     width: 14px;
     right: 205px;
-    top: 265px;
+    top: 265px;   
 }
 .dragBar-vertical {
 	transform: rotate(90deg);	
 	position: relative;
 	top: 10px;
+	z-index: 2;
 }
 #dragBar {
   -webkit-appearance: none;
@@ -160,4 +162,28 @@
 	display: block;
 	margin: auto;
 	width: 100px;
+}
+.flash {
+	position: absolute;   
+    width: 500px;
+    height: 300px;
+    margin: auto;
+    left: 125px;
+    top: 25px;
+    right: 0;
+    z-index: 1;
+}
+.flash img {
+	position: absolute;   
+    width: 100px;
+    top: 0;
+    left: 0;
+    opacity: 0; 
+}
+
+@keyframes fadeInFlash {
+	0% { opacity: 0; transform: scale(0) rotate(0deg); }	
+	80% { opacity: 1; transform: scale(5) rotate(180deg); }
+	85% { opacity: 0.5; transform: scale(6) rotate(360deg);  }
+	100% { opacity: 0; transform: scale(10) rotate(500deg); }
 }
