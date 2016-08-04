@@ -9,6 +9,7 @@ var BannerPhone = (function () {
 		this.textContent = this.root.querySelector('.text-content');
 		this.flash = this.root.querySelector('.flash img');
 		this.closeBtn = this.root.querySelector('.close-wrapper');
+		this.internal = this.root.querySelector('.internal');
 		
 		this.loadBanner();
 		this.scrollPhone();
@@ -57,6 +58,15 @@ var BannerPhone = (function () {
 
 				if ( newValRange === '28' ) {
 					self.fadeInFlash();								
+				}
+
+				if ( newValRange === '59' ) {
+					self.internal.style.transition = 'all .5s';	
+					self.internal.style.opacity = '1';
+
+				} else {
+					self.internal.style.transition = 'all 0s';
+					self.internal.style.opacity = '0';
 				}
 		});
 	};

@@ -187,3 +187,21 @@
 	85% { opacity: 0.5; transform: scale(6) rotate(360deg);  }
 	100% { opacity: 0; transform: scale(10) rotate(500deg); }
 }
+
+.internal {
+	position: absolute;
+    width: 371px;
+    height: 210px;
+    margin: auto;
+    left: 28px;
+    right: 0;
+    top: 19px;
+    opacity: 0;
+    transition: all .5s;
+    -webkit-transition: all .5s; 
+    -moz-transition: all .5s; 
+    -o-transition: all .5s;
+}
+.internal img {
+	width: 100%;
+}
