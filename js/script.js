@@ -55,7 +55,7 @@ var BannerPhone = (function () {
 				}
 				oldValRange = newValRange;
 
-				if ( newValRange === '29' ) {
+				if ( newValRange === '28' ) {
 					self.fadeInFlash();								
 				}
 		});
