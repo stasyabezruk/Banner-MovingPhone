@@ -8,9 +8,11 @@ var BannerPhone = (function () {
 		this.buyBtn = this.root.querySelector('.buyBtn');		
 		this.textContent = this.root.querySelector('.text-content');
 		this.flash = this.root.querySelector('.flash img');
+		this.closeBtn = this.root.querySelector('.close-wrapper');
 		
 		this.loadBanner();
-		this.scrollPhone();		
+		this.scrollPhone();
+		this.closeBanner();		
 	}
 
 	Constructor.prototype.scrollPhone = function () {
@@ -101,8 +103,17 @@ var BannerPhone = (function () {
 	/*flash*/
 	Constructor.prototype.fadeInFlash = function () {
 		var self = this;
-		this.flash.style.animation = 'fadeInFlash .3s ease-in-out';
-		var timeoutID = window.setTimeout(function () {self.flash.style.animation = ''}, 300);
+
+		this.flash.style.animation = 'fadeInFlash .4s ease-in-out';
+		var timeoutID = window.setTimeout(function () {self.flash.style.animation = ''}, 400);
+	};
+
+	Constructor.prototype.closeBanner = function () {
+		var self = this;
+
+		this.closeBtn.addEventListener ('click', function () {
+			self.root.remove();
+		});
 	};
 	
 
