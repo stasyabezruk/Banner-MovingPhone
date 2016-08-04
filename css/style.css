@@ -94,6 +94,11 @@
 .text-content img {
 	position: absolute;
     bottom: 0;
+    opacity: 0;
+    transition: opacity .3s;
+}
+.text-content img.text-active {
+	opacity: 1;	
 }
 .right-col {
 	float: right;
@@ -143,13 +148,13 @@
 	text-align: center;
 	padding-right: 15px;
 	opacity: 0;
-	transition: opacity 2s;
+	transition: opacity 1s;
 }
 .buyBtn {
 	position: absolute;
 	bottom: 10px;
 	opacity: 0;
-	transition: opacity 2s;
+	transition: opacity 1s;
 }
 .buyBtn img {
 	display: block;
