@@ -107,13 +107,13 @@
 	position: absolute;
     bottom: 0;
     opacity: 0;
-    transition: opacity .2s;
-    -webkit-transition: opacity .2s;
-    -o-transition: opacity .2s;
-    -moz-transition: opacity .2s;
+    transition: opacity .3s;
+    -webkit-transition: opacity .3s;
+    -o-transition: opacity .3s;
+    -moz-transition: opacity .3s;
 }
 .text-content img.text-active {
-	opacity: 1;	
+	opacity: 1;
 }
 .right-col {
 	float: right;
@@ -203,21 +203,62 @@
 @keyframes fadeInFlash {
 	0% { 
 		opacity: 0; 
-		transform: scale(0) rotate(0deg); 
+		transform: scale(0) rotate(0deg);
+		-webkit-transform: scale(0) rotate(0deg);
+		-moz-transform: scale(0) rotate(0deg);
+		-o-transform: scale(0) rotate(0deg);
 	}	
 	80% { 
 		opacity: 1; 
 		transform: scale(5) rotate(180deg); 
+		-webkit-transform: scale(5) rotate(180deg);
+		-moz-transform: scale(5) rotate(180deg);
+		-o-transform: scale(5) rotate(180deg);
 	}
-	85% { opacity: 0.5; transform: scale(6) rotate(360deg);  
+	85% { 
+		opacity: 0.5; 
+		transform: scale(6) rotate(360deg);
+		-webkit-transform: scale(6) rotate(360deg);
+		-moz-transform: scale(6) rotate(360deg);
+		-o-transform: scale(6) rotate(360deg);  
 	}
-	100% { opacity: 0; transform: scale(10) rotate(500deg); }
+	100% { 
+		opacity: 0; 
+		transform: scale(10) rotate(500deg); 
+		-webkit-transform: scale(10) rotate(500deg);
+		-moz-transform: scale(10) rotate(500deg);
+		-o-transform: scale(10) rotate(500deg);
+	}
 }
 @-webkit-keyframes fadeInFlash {
-	0% { opacity: 0; transform: scale(0) rotate(0deg); }	
-	80% { opacity: 1; transform: scale(5) rotate(180deg); }
-	85% { opacity: 0.5; transform: scale(6) rotate(360deg);  }
-	100% { opacity: 0; transform: scale(10) rotate(500deg); }
+	0% { 
+		opacity: 0; 
+		transform: scale(0) rotate(0deg);
+		-webkit-transform: scale(0) rotate(0deg);
+		-moz-transform: scale(0) rotate(0deg);
+		-o-transform: scale(0) rotate(0deg);
+	}	
+	80% { 
+		opacity: 1; 
+		transform: scale(5) rotate(180deg); 
+		-webkit-transform: scale(5) rotate(180deg);
+		-moz-transform: scale(5) rotate(180deg);
+		-o-transform: scale(5) rotate(180deg);
+	}
+	85% { 
+		opacity: 0.5; 
+		transform: scale(6) rotate(360deg);
+		-webkit-transform: scale(6) rotate(360deg);
+		-moz-transform: scale(6) rotate(360deg);
+		-o-transform: scale(6) rotate(360deg);  
+	}
+	100% { 
+		opacity: 0; 
+		transform: scale(10) rotate(500deg); 
+		-webkit-transform: scale(10) rotate(500deg);
+		-moz-transform: scale(10) rotate(500deg);
+		-o-transform: scale(10) rotate(500deg);
+	}
 }
 
 .internal {

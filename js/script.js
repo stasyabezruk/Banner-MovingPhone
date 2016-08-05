@@ -61,11 +61,13 @@ var BannerPhone = (function () {
 				}
 
 				if ( newValRange === '59' ) {
-					self.internal.style.transition = 'all .5s';	
+					self.internal.style.transition = 'all .5s';
+					self.internal.style.WebkitTransition = 'all .5s';	
 					self.internal.style.opacity = '1';
 
 				} else {
 					self.internal.style.transition = 'all 0s';
+					self.internal.style.WebkitTransition = 'all 0s';	
 					self.internal.style.opacity = '0';
 				}
 		});
@@ -104,7 +106,7 @@ var BannerPhone = (function () {
 			if ( texts[i].classList.contains('text-active') ) {				
 				texts[i].classList.remove('text-active');				
 			}
-			texts[showdNumEl].classList.add('text-active');
+			var timeoutID = window.setTimeout(function () {texts[showdNumEl].classList.add('text-active')}, 100);
 		}
 	};
 
@@ -124,7 +126,7 @@ var BannerPhone = (function () {
 		var self = this;
 
 		this.closeBtn.addEventListener ('click', function () {
-			self.root.remove();
+			self.root.parentNode.removeChild(self.root);
 		});
 	};
 	
