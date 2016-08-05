@@ -104,9 +104,7 @@ var BannerPhone = (function () {
 			if ( texts[i].classList.contains('text-active') ) {				
 				texts[i].classList.remove('text-active');				
 			}
-
-			var timeoutID = window.setTimeout(function () {texts[showdNumEl].classList.add('text-active')}, 100);
-			
+			texts[showdNumEl].classList.add('text-active');
 		}
 	};
 
@@ -115,7 +113,11 @@ var BannerPhone = (function () {
 		var self = this;
 
 		this.flash.style.animation = 'fadeInFlash .4s ease-in-out';
-		var timeoutID = window.setTimeout(function () {self.flash.style.animation = ''}, 400);
+		this.flash.style.WebkitAnimation = 'fadeInFlash .4s ease-in-out';
+		
+		var timeoutID1 = window.setTimeout(function () {self.flash.style.animation = ''}, 400),
+			timeoutID1 = window.setTimeout(function () {self.flash.style.WebkitAnimation = ''}, 400);
+
 	};
 
 	Constructor.prototype.closeBanner = function () {

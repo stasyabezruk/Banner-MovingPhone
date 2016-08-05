@@ -35,7 +35,11 @@
     top: 265px;   
 }
 .dragBar-vertical {
-	transform: rotate(90deg);	
+	transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	-webkit-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
 	position: relative;
 	top: 10px;
 	z-index: 2;
@@ -65,6 +69,9 @@
     background: black;
     cursor: pointer;
     transition: background .15s ease-in-out;
+    -webkit-transition: background .15s ease-in-out;
+    -o-transition: background .15s ease-in-out;
+    -moz-transition: background .15s ease-in-out;
 }
 
 .left-col { 
@@ -91,13 +98,19 @@
 	height: 155px;
     position: relative;
     opacity: 0;
-    transition: opacity 3s;
+    transition: opacity .3s;
+    -webkit-transition: opacity 3s;
+    -o-transition: opacity 3s;
+    -moz-transition: opacity 3s;
 }
 .text-content img {
 	position: absolute;
     bottom: 0;
     opacity: 0;
-    transition: opacity .3s;
+    transition: opacity .2s;
+    -webkit-transition: opacity .2s;
+    -o-transition: opacity .2s;
+    -moz-transition: opacity .2s;
 }
 .text-content img.text-active {
 	opacity: 1;	
@@ -150,13 +163,19 @@
 	text-align: center;
 	padding-right: 15px;
 	opacity: 0;
-	transition: opacity 1s;
+	transition: opacity 1s;	
+    -webkit-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    -moz-transition: opacity 1s;
 }
 .buyBtn {
 	position: absolute;
 	bottom: 10px;
 	opacity: 0;
-	transition: opacity 1s;
+	transition: opacity 1s;	
+    -webkit-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    -moz-transition: opacity 1s;
 }
 .buyBtn img {
 	display: block;
@@ -182,6 +201,19 @@
 }
 
 @keyframes fadeInFlash {
+	0% { 
+		opacity: 0; 
+		transform: scale(0) rotate(0deg); 
+	}	
+	80% { 
+		opacity: 1; 
+		transform: scale(5) rotate(180deg); 
+	}
+	85% { opacity: 0.5; transform: scale(6) rotate(360deg);  
+	}
+	100% { opacity: 0; transform: scale(10) rotate(500deg); }
+}
+@-webkit-keyframes fadeInFlash {
 	0% { opacity: 0; transform: scale(0) rotate(0deg); }	
 	80% { opacity: 1; transform: scale(5) rotate(180deg); }
 	85% { opacity: 0.5; transform: scale(6) rotate(360deg);  }
