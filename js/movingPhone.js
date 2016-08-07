@@ -137,20 +137,52 @@ var BannerPhone = (function () {
 
 	/*RAIN DROPS*/
 	Constructor.prototype.rainDrops = function () {
-		var wrapperHeight = this.dropsWrapper.clientHeight,
-			wrapperWidth = this.dropsWrapper.clientWidth,
-			i;	
+		var self = this;
 
-		/*for (i = 0; i < this.drops.length; i++) {
-			this.drops[i]*10;
-			this.drops.push(this.drops[i]);
-			return this.drops;
-		}
-		
-		debugger;*/
+		this.drawImages('img/effects/raindrop_1.png', 'Big');
+		this.drawImages('img/effects/raindrop_2.png', 'Middle');
+		this.drawImages('img/effects/raindrop_3.png', 'Small');
+	};
 
-	}
-	
+	Constructor.prototype.drawImages = function (url, dropType) {
+		var	i;
+		for (i = 0; i < 50; i++){
+			var newImg = document.createElement("img");
+        	newImg.setAttribute("src", url);
+        	newImg.classList.add('drop');
+        	newImg.setAttribute('id', 'drop' + dropType + i);
+
+        	newImg.style.left = this.randomPosX();
+        	newImg.style.top = this.randomPosY();
+
+        	if (dropType == 'Middle') {
+        		newImg.style.width = this.randomWidth(6, 15);
+        	} else {
+        		newImg.style.width = this.randomWidth(15, 30);
+        	}
+        	
+        	
+        	this.dropsWrapper.appendChild(newImg);
+    	}
+	};
+
+	Constructor.prototype.randomPosX = function () {
+		var wW = this.dropsWrapper.clientWidth,			
+			num = Math.round(Math.random() * wW) + 'px'
+  			return num;
+
+	};
+	Constructor.prototype.randomPosY = function () {
+		var wH = this.dropsWrapper.clientHeight,
+			num = Math.round(Math.random() * wH) + 'px'
+  				return num;
+	};
+	Constructor.prototype.randomWidth = function (min, max) {
+		var rand = min + Math.random() * (max + 1 - min);
+		    rand = Math.floor(rand) + 'px';
+		    return rand;
+	};
+
 
 	return Constructor;
 })();

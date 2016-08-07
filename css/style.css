@@ -313,10 +313,10 @@
 }
 .rainDrops-wrapper {
 	position: absolute;
-    width: 400px;
+    width: 465px;
     height: 248px;
     margin: auto;
-    left: 0;
+    left: 25px;
     right: 0;
     top: 0;
 }
