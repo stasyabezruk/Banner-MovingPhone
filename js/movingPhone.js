@@ -10,10 +10,14 @@ var BannerPhone = (function () {
 		this.flash = this.root.querySelector('.flash img');
 		this.closeBtn = this.root.querySelector('.close-wrapper');
 		this.internal = this.root.querySelector('.internal');
+
+		this.dropsWrapper = this.root.querySelector('.rainDrops-wrapper');
+		this.drops = this.root.getElementsByClassName('drop'),
 		
 		this.loadBanner();
 		this.scrollPhone();
-		this.closeBanner();		
+		this.closeBanner();
+		this.rainDrops();
 	}
 
 	Constructor.prototype.scrollPhone = function () {
@@ -21,12 +25,12 @@ var BannerPhone = (function () {
 			oldValRange = self.dragBar.value;			
 
 		this.dragBar.addEventListener('input', function () {
-			var newValRange = self.dragBar.value,				
+			var newValRange = self.dragBar.value,
 			    newBgPos = -Number(221*newValRange);
 			    
-			    //console.log(newValRange);			    
+			    console.log(newValRange);			    
 				
-				self.phone.style.backgroundPositionY = newBgPos + 'px';
+				self.phone.style.backgroundPosition = '-30px ' + newBgPos + 'px';
 
 				//check the direction of input-range
 				if ( newValRange > oldValRange ) {	//to bottom
@@ -80,7 +84,7 @@ var BannerPhone = (function () {
 		var self = this,
 			animate = window.setTimeout ( function () {
 				self.moveEl(el);
-			}, 12);	
+			}, 25);	
 		if (el.offsetTop == 15) {			
 			window.clearTimeout(animate);
 			
@@ -92,6 +96,7 @@ var BannerPhone = (function () {
 	Constructor.prototype.loadBanner = function () {
 		var self = this;
 		
+		this.dragBar.value = '0'; //for Firefox
 		this.moveEl(this.phone);
 		var timeoutID = window.setTimeout(function () {self.moveEl(self.dragBarWrapper)}, 400);
 		this.textContent.style.opacity = '1';
@@ -129,11 +134,24 @@ var BannerPhone = (function () {
 			self.root.parentNode.removeChild(self.root);
 		});
 	};
+
+	/*RAIN DROPS*/
+	Constructor.prototype.rainDrops = function () {
+		var wrapperHeight = this.dropsWrapper.clientHeight,
+			wrapperWidth = this.dropsWrapper.clientWidth,
+			i;	
+
+		/*for (i = 0; i < this.drops.length; i++) {
+			this.drops[i]*10;
+			this.drops.push(this.drops[i]);
+			return this.drops;
+		}
+		
+		debugger;*/
+
+	}
 	
 
 	return Constructor;
 })();
 
-window.onload = function() {
-	var banner1 = new BannerPhone('#moving-phone');	
-}

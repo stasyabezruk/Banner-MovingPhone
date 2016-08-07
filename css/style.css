@@ -19,8 +19,7 @@
 #phone-wrapper {
 	width: 460px;
 	height: 220px;	
-    background: url(../img/phone_sprite.png) no-repeat -30px -3px;
-    float: left;
+    background: url(../img/phone_sprite.png) no-repeat -30px 0px;    
     position: absolute;
     top: 265px;
     margin: auto;
@@ -40,18 +39,19 @@
 	-webkit-transform: rotate(90deg);
 	-o-transform: rotate(90deg);
 	-moz-transform: rotate(90deg);
+	z-index: 2;
 	position: relative;
 	top: 10px;
-	z-index: 2;
 }
+/*for Chrome, Safari, Opera*/
 #dragBar {
-  -webkit-appearance: none;
-  width: 200px;
-  height: 1px;  
-  background: rgba(174,174,174,0.9);
-  outline: none;
-  padding: 0;
-  margin: 0;
+	-webkit-appearance: none;
+	width: 200px;
+	height: 1px;  
+	background: rgba(174,174,174,0.9);
+	outline: none;
+	padding: 0;
+	margin: 0;
 }
 #dragBar:hover,
 #dragBar:focus {
@@ -68,17 +68,50 @@
     border-radius: 50%;
     background: black;
     cursor: pointer;
-    transition: background .15s ease-in-out;
-    -webkit-transition: background .15s ease-in-out;
-    -o-transition: background .15s ease-in-out;
-    -moz-transition: background .15s ease-in-out;
 }
+
+/*for Firefox*/
+#dragBar::-moz-range-track {
+	width: 200px;
+	height: .5px;  
+	background: rgba(174,174,174,0.9);
+	outline: none;
+	padding: 0;
+	margin: 0;
+}
+#dragBar::-moz-range-thumb {
+	width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: black;
+    cursor: pointer;
+}
+#dragBar::-moz-range-thumb:hover,
+#dragBar::-moz-range-thumb:focus {
+	cursor: move;
+}
+/*for IE*/
+#dragBar::-ms-track {
+	width: 200px;
+	height: 1px;  
+	background: rgba(174,174,174,0.9);
+	outline: none;
+	padding: 0;
+	margin: 0;
+}
+#dragBar::-ms-thumb  {
+	width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: black;
+    cursor: pointer;
+}
+
 
 .left-col { 
 	width: 280px;
 	float: left;
 }
-
 .header-wrapper,
 .text-wrapper {
 	float: left;
@@ -263,12 +296,12 @@
 
 .internal {
 	position: absolute;
-    width: 371px;
+    width: 367px;
     height: 210px;
     margin: auto;
-    left: 28px;
+    left: 25px;
     right: 0;
-    top: 19px;
+    top: 26px;
     opacity: 0;
     transition: all .5s;
     -webkit-transition: all .5s; 
@@ -277,4 +310,17 @@
 }
 .internal img {
 	width: 100%;
+}
+.rainDrops-wrapper {
+	position: absolute;
+    width: 400px;
+    height: 248px;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+.rainDrops-wrapper .drop {
+	position: absolute;
+	z-index: 3;
 }
