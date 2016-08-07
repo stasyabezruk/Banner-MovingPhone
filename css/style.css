@@ -323,4 +323,5 @@
 .rainDrops-wrapper .drop {
 	position: absolute;
 	z-index: 3;
+	width: 80px;
 }
