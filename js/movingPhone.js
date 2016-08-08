@@ -127,8 +127,8 @@ var BannerPhone = (function () {
 		this.flash.style.animation = 'fadeInFlash .4s ease-in-out';
 		this.flash.style.WebkitAnimation = 'fadeInFlash .4s ease-in-out';
 		
-		var timeoutID1 = window.setTimeout(function () {self.flash.style.animation = ''}, 400),
-			timeoutID1 = window.setTimeout(function () {self.flash.style.WebkitAnimation = ''}, 400);
+		var timeoutID1 = window.setTimeout ( function () { self.flash.style.animation = ''}, 400),
+			timeoutID1 = window.setTimeout ( function () { self.flash.style.WebkitAnimation = ''}, 400);
 
 	};
 
@@ -145,10 +145,11 @@ var BannerPhone = (function () {
 		var self = this,
 			i;
 		
-		var timerId = setInterval ( function () { self.renderOneDrop(); }, 80);
+		var timerId1 = setInterval ( function () { self.renderOneDrop(); }, 80);
 		setTimeout ( function () { 
-			clearInterval (timerId);
+			clearInterval (timerId1);
 		}, 5000);
+		
 	};
 
 	Constructor.prototype.renderOneDrop = function () {		
@@ -169,17 +170,37 @@ var BannerPhone = (function () {
     	
     	if (dropType == 'Big') {
     		var timeoutID1 = window.setTimeout(function () {
-    			newImg.style.width = self.randomWidth(15, 30);
+    			newImg.style.width = self.randomWidth(20, 35);
     			newImg.style.opacity = '1';
     		}, 5);    		
     	} else {
     		var timeoutID2 = window.setTimeout(function () {
-    			newImg.style.width = self.randomWidth(5, 20);
+    			newImg.style.width = self.randomWidth(5, 15);
     			newImg.style.opacity = '1';
     		}, 5);
-    	}       	
+    	}     	
     	
+    	setTimeout ( function () {
+    		timerFallDown= setInterval ( function () { self.dropFallDown(dropContainer); }, 50);
+    	}, 1000);
 	};
+
+	Constructor.prototype.dropFallDown = function (drop) {		
+		var newY = drop.offsetTop + 2;
+
+		if (newY > drop.parentElement.offsetHeight) {
+		debugger;
+            drop.parentNode.removeChild(drop);
+        }
+        else {
+            drop.style.top = newY + 'px';
+        }
+	};
+
+	Constructor.prototype.dropReduce = function (drop) {
+		drop.style.height = '0px';
+		drop.style.opacity = '0';
+	}
 
 	Constructor.prototype.randomPosX = function () {
 		var wW = this.dropsWrapper.clientWidth,			
