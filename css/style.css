@@ -336,6 +336,10 @@
 	position: absolute;
 	width: 200px;
 	height: 200px;
+	transition: all .1s;
+    -webkit-transition: all .1s; 
+    -moz-transition: all .1s; 
+    -o-transition: all .1s;
 }
 .rainDrops-wrapper .drop {
 	position: absolute;	

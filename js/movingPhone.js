@@ -27,7 +27,7 @@ var BannerPhone = (function () {
 			var newValRange = self.dragBar.value,
 			    newBgPos = -Number(221*newValRange);
 			    
-			    console.log(newValRange);			    
+			    //console.log(newValRange);			    
 				
 				self.phone.style.backgroundPosition = '-30px ' + newBgPos + 'px';
 
@@ -36,11 +36,10 @@ var BannerPhone = (function () {
 					
 					if (newValRange === '3') {						
 						self.fadeText('1');
-					}
-					if (newValRange === '22') {						
+						self.renderDrops();
+					} else if (newValRange === '22') {						
 						self.fadeText('2');
-					}
-					if (newValRange === '47') {						
+					} else if (newValRange === '47') {						
 						self.fadeText('3');
 					}					
 				
@@ -48,11 +47,10 @@ var BannerPhone = (function () {
 					
 					if ( newValRange === '3' ) {						
 						self.fadeText('0');
-					}
-					if (newValRange === '22') {						
+					} else if (newValRange === '22') {						
 						self.fadeText('1');
-					}
-					if (newValRange === '47') {						
+						self.renderDrops();
+					} else if (newValRange === '47') {						
 						self.fadeText('2');
 					}
 					
@@ -72,10 +70,6 @@ var BannerPhone = (function () {
 					self.internal.style.transition = 'all 0s';
 					self.internal.style.WebkitTransition = 'all 0s';	
 					self.internal.style.opacity = '0';
-				}
-
-				if ( newValRange === '2' ) {
-					self.renderDrops();
 				}
 		});
 	};
@@ -141,15 +135,14 @@ var BannerPhone = (function () {
 	};
 
 	/*RAIN DROPS*/
-	Constructor.prototype.renderDrops = function () {
+	Constructor.prototype.renderDrops = function (valRange) {
 		var self = this,
 			i;
 		
 		var timerId1 = setInterval ( function () { self.renderOneDrop(); }, 80);
 		setTimeout ( function () { 
 			clearInterval (timerId1);
-		}, 5000);
-		
+		}, 5000);		
 	};
 
 	Constructor.prototype.renderOneDrop = function () {		
@@ -181,32 +174,41 @@ var BannerPhone = (function () {
     	}     	
     	
     	setTimeout ( function () {
-    		timerFallDown= setInterval ( function () { self.dropFallDown(dropContainer); }, 50);
+    		timerFallDown = setInterval ( function () { self.dropFallDown(dropContainer); }, 20);
     	}, 1000);
 	};
 
-	Constructor.prototype.dropFallDown = function (drop) {		
-		var newY = drop.offsetTop + 2;
+	Constructor.prototype.dropFallDown = function (dropContainer) {		
+		var self = this,
+			speed = this.fallSpeed(),
+			newY = dropContainer.offsetTop + speed;
+			debugger;
 
-		if (newY > drop.parentElement.offsetHeight) {
-		debugger;
-            drop.parentNode.removeChild(drop);
-        }
-        else {
-            drop.style.top = newY + 'px';
-        }
+		if ( dropContainer.parentElement ) {
+			if (newY > dropContainer.parentElement.offsetHeight) {
+	            dropContainer.parentNode.removeChild(dropContainer);
+	        }
+	        else {
+	            dropContainer.style.top = newY + 'px';
+	        }
+		}
+		
 	};
 
+	Constructor.prototype.fallSpeed = function () {
+		var i;
+		for (i = 0; i < 20; i++) {
+			return i;	
+		}
+	};
 	Constructor.prototype.dropReduce = function (drop) {
-		drop.style.height = '0px';
+		drop.style.width = '0px';
 		drop.style.opacity = '0';
-	}
-
+	};
 	Constructor.prototype.randomPosX = function () {
 		var wW = this.dropsWrapper.clientWidth,			
 			num = Math.round(Math.random() * wW - 100) + 'px'
   			return num;
-
 	};
 	Constructor.prototype.randomPosY = function () {
 		var wH = this.dropsWrapper.clientHeight,
