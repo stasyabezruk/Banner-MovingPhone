@@ -94,17 +94,29 @@
 #dragBar::-ms-track {
 	width: 200px;
 	height: 1px;  
-	background: rgba(174,174,174,0.9);
-	outline: none;
+	background: transparent;
+	border-color: transparent;
+    border-width: 6px 0;
+    color: transparent;
 	padding: 0;
 	margin: 0;
 }
-#dragBar::-ms-thumb  {
+#dragBar::-ms-fill-lower {
+    background: rgba(174,174,174,0.9);
+    border-radius: 10px;
+}
+#dragBar::-ms-fill-upper {
+    background: rgba(174,174,174,0.9);
+    border-radius: 10px;
+}
+#dragBar::-ms-thumb {
+	border: none;
 	width: 20px;
     height: 20px;
     border-radius: 50%;
     background: black;
-    cursor: pointer;
+    cursor: move;
+    padding: 20px;
 }
 
 
@@ -320,8 +332,23 @@
     right: 0;
     top: 0;
 }
-.rainDrops-wrapper .drop {
+.dropContainer {
 	position: absolute;
+	width: 200px;
+	height: 200px;
+}
+.rainDrops-wrapper .drop {
+	position: absolute;	
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
 	z-index: 3;
-	width: 80px;
+	width: 200px;
+	opacity: 0;
+	transition: all .1s;
+    -webkit-transition: all .1s; 
+    -moz-transition: all .1s; 
+    -o-transition: all .1s;
 }
