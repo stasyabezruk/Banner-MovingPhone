@@ -12,7 +12,7 @@ var BannerPhone = (function () {
 		this.internal = this.root.querySelector('.internal');
 
 		this.dropsWrapper = this.root.querySelector('.rainDrops-wrapper');
-		this.drops = this.root.getElementsByClassName('drop'),
+		this.fallSpeed = 2;
 		
 		this.loadBanner();
 		this.scrollPhone();
@@ -27,7 +27,7 @@ var BannerPhone = (function () {
 			var newValRange = self.dragBar.value,
 			    newBgPos = -Number(221*newValRange);
 			    
-			    //console.log(newValRange);			    
+			    console.log(newValRange);			    
 				
 				self.phone.style.backgroundPosition = '-30px ' + newBgPos + 'px';
 
@@ -135,14 +135,14 @@ var BannerPhone = (function () {
 	};
 
 	/*RAIN DROPS*/
-	Constructor.prototype.renderDrops = function (valRange) {
+	Constructor.prototype.renderDrops = function () {
 		var self = this,
 			i;
 		
 		var timerId1 = setInterval ( function () { self.renderOneDrop(); }, 80);
 		setTimeout ( function () { 
 			clearInterval (timerId1);
-		}, 5000);		
+		}, 8000);	
 	};
 
 	Constructor.prototype.renderOneDrop = function () {		
@@ -174,15 +174,22 @@ var BannerPhone = (function () {
     	}     	
     	
     	setTimeout ( function () {
-    		timerFallDown = setInterval ( function () { self.dropFallDown(dropContainer); }, 20);
+    		timerFallDown = setInterval ( function () { self.dropFallDown(dropContainer, dropType); }, 10);
     	}, 1000);
+    	setTimeout ( function () {self.dropReduce(newImg)}, 1800); //drop will reduce at the end of the fall
 	};
 
-	Constructor.prototype.dropFallDown = function (dropContainer) {		
+	Constructor.prototype.dropFallDown = function (dropContainer, dropType) {		
 		var self = this,
-			speed = this.fallSpeed(),
-			newY = dropContainer.offsetTop + speed;
-			debugger;
+			fallSpeed;
+		
+		if (dropType == 'Big') {
+			fallSpeed = this.randomSpeed(5, 10);  //big drops - slow
+		} else {
+			fallSpeed = this.randomSpeed(30, 40); //small drops - fast
+		}
+		var newY = dropContainer.offsetTop + fallSpeed;	
+
 
 		if ( dropContainer.parentElement ) {
 			if (newY > dropContainer.parentElement.offsetHeight) {
@@ -195,16 +202,15 @@ var BannerPhone = (function () {
 		
 	};
 
-	Constructor.prototype.fallSpeed = function () {
-		var i;
-		for (i = 0; i < 20; i++) {
-			return i;	
-		}
-	};
 	Constructor.prototype.dropReduce = function (drop) {
-		drop.style.width = '0px';
-		drop.style.opacity = '0';
+		drop.style.width = '4px';
+		drop.style.transition = 'all 3s';
+		
+		var heightEl = drop.clientHeight + 'px';
+		drop.style.height = heightEl;
 	};
+
+
 	Constructor.prototype.randomPosX = function () {
 		var wW = this.dropsWrapper.clientWidth,			
 			num = Math.round(Math.random() * wW - 100) + 'px'
@@ -230,6 +236,10 @@ var BannerPhone = (function () {
 			randomType = arr[Math.floor(Math.random()*arr.length)];
 			return randomType;
 	};
+	Constructor.prototype.randomSpeed = function (min, max) {
+		var randSpeed = Math.floor(min + Math.random() * (max + 1 - min));
+		return randSpeed;
+	}
 
 
 	return Constructor;
