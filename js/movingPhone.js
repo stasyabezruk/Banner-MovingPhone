@@ -16,7 +16,7 @@ var BannerPhone = (function () {
 		
 		this.loadBanner();
 		this.scrollPhone();
-		this.closeBanner
+		this.closeBanner();
 	}
 
 	Constructor.prototype.scrollPhone = function () {
@@ -46,7 +46,7 @@ var BannerPhone = (function () {
 				
 				} else if ( newValRange < oldValRange ) {	//to top
 					
-					if ( newValRange === '3' ) {
+					if ( newValRange === '1' ) {
 						self.stopDrops();
 					} else if ( newValRange === '3' ) {						
 						self.fadeText('0');						
@@ -190,9 +190,9 @@ var BannerPhone = (function () {
     	}     	
     	
     	setTimeout ( function () {
-    		timerFallDown = setInterval ( function () { self.dropFallDown(dropContainer, dropType); }, 10);
+    		timerFallDown = setInterval ( function () { self.dropFallDown(dropContainer, dropType); }, 60);
     	}, 1000);
-    	setTimeout ( function () {self.dropReduce(newImg)}, 1000); //drop will reduce at the end of the fall
+    	setTimeout ( function () {self.dropReduce(newImg)}, 1300); //drop will reduce at the end of the fall
 	};
 
 	Constructor.prototype.dropFallDown = function (dropContainer, dropType) {		
@@ -200,9 +200,9 @@ var BannerPhone = (function () {
 			fallSpeed;
 		
 		if (dropType == 'Big') {
-			fallSpeed = this.randomSpeed(10, 20);  //big drops - slow
+			fallSpeed = this.randomSpeed(4, 10);  //big drops - slow
 		} else {
-			fallSpeed = this.randomSpeed(30, 40); //small drops - fast
+			fallSpeed = this.randomSpeed(5, 15); //small drops - fast
 		}
 		var newY = dropContainer.offsetTop + fallSpeed;	
 
