@@ -12,7 +12,7 @@ var BannerPhone = (function () {
 		this.internal = this.root.querySelector('.internal');
 
 		this.dropsWrapper = this.root.querySelector('.rainDrops-wrapper');
-		this.fallSpeed = 2;
+		this.startDrops = null;
 		
 		this.loadBanner();
 		this.scrollPhone();
@@ -27,7 +27,7 @@ var BannerPhone = (function () {
 			var newValRange = self.dragBar.value,
 			    newBgPos = -Number(221*newValRange);
 			    
-			    console.log(newValRange);			    
+			    //console.log(newValRange);			    
 				
 				self.phone.style.backgroundPosition = '-30px ' + newBgPos + 'px';
 
@@ -39,14 +39,17 @@ var BannerPhone = (function () {
 						self.renderDrops();
 					} else if (newValRange === '22') {						
 						self.fadeText('2');
+						self.stopDrops();
 					} else if (newValRange === '47') {						
 						self.fadeText('3');
 					}					
 				
 				} else if ( newValRange < oldValRange ) {	//to top
 					
-					if ( newValRange === '3' ) {						
-						self.fadeText('0');
+					if ( newValRange === '3' ) {
+						self.stopDrops();
+					} else if ( newValRange === '3' ) {						
+						self.fadeText('0');						
 					} else if (newValRange === '22') {						
 						self.fadeText('1');
 						self.renderDrops();
@@ -135,14 +138,27 @@ var BannerPhone = (function () {
 	};
 
 	/*RAIN DROPS*/
-	Constructor.prototype.renderDrops = function () {
+	Constructor.prototype.renderDrops = function (isRaining) {
 		var self = this,
 			i;
 		
-		var timerId1 = setInterval ( function () { self.renderOneDrop(); }, 80);
+		this.startDrops = setInterval ( function () { self.renderOneDrop(); }, 80);
+		
 		setTimeout ( function () { 
-			clearInterval (timerId1);
-		}, 8000);	
+			clearInterval (self.startDrops);
+		}, 8000);
+	};
+	
+	Constructor.prototype.stopDrops = function () {
+		var isRaining = this.dropsWrapper.childNodes.length > 0;
+
+		if(isRaining) {
+			clearInterval(this.startDrops);
+			while (this.dropsWrapper.firstChild) {
+			    this.dropsWrapper.removeChild(this.dropsWrapper.firstChild);
+			}
+		}
+		this.startDrops = null;
 	};
 
 	Constructor.prototype.renderOneDrop = function () {		
@@ -176,7 +192,7 @@ var BannerPhone = (function () {
     	setTimeout ( function () {
     		timerFallDown = setInterval ( function () { self.dropFallDown(dropContainer, dropType); }, 10);
     	}, 1000);
-    	setTimeout ( function () {self.dropReduce(newImg)}, 1800); //drop will reduce at the end of the fall
+    	setTimeout ( function () {self.dropReduce(newImg)}, 1000); //drop will reduce at the end of the fall
 	};
 
 	Constructor.prototype.dropFallDown = function (dropContainer, dropType) {		
@@ -184,12 +200,11 @@ var BannerPhone = (function () {
 			fallSpeed;
 		
 		if (dropType == 'Big') {
-			fallSpeed = this.randomSpeed(5, 10);  //big drops - slow
+			fallSpeed = this.randomSpeed(10, 20);  //big drops - slow
 		} else {
 			fallSpeed = this.randomSpeed(30, 40); //small drops - fast
 		}
 		var newY = dropContainer.offsetTop + fallSpeed;	
-
 
 		if ( dropContainer.parentElement ) {
 			if (newY > dropContainer.parentElement.offsetHeight) {
@@ -203,7 +218,7 @@ var BannerPhone = (function () {
 	};
 
 	Constructor.prototype.dropReduce = function (drop) {
-		drop.style.width = '4px';
+		drop.style.width = '1px';
 		drop.style.transition = 'all 3s';
 		
 		var heightEl = drop.clientHeight + 'px';
