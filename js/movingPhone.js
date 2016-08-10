@@ -171,9 +171,17 @@ var BannerPhone = (function () {
 			newImg = document.createElement("img"),
 			dropContainer = document.createElement("div"),
 			dropType = this.randomType(),
+			imgUrl,
 			timerFallDown;
 
-    	newImg.setAttribute("src", this.randomImage(1, 3));
+		//check for quality of image		
+		if (dropType == 'Big') {
+			imgUrl = this.randomImage(1, false);
+		} else {
+			imgUrl = this.randomImage(1, 3);
+		}		
+    	
+    	newImg.setAttribute("src", imgUrl);
     	newImg.classList.add('drop', 'drop' + dropType);
     	dropContainer.classList.add('dropContainer');
 
@@ -184,13 +192,13 @@ var BannerPhone = (function () {
     	this.dropsWrapper.appendChild(dropContainer); 
     	
     	if (dropType == 'Big') {
-    		var timeoutID1 = window.setTimeout(function () {
+    		timerFallDown = window.setTimeout(function () {
     			newImg.style.width = self.randomWidth(20, 35);
     			newImg.style.opacity = '1';
     		}, 5);    		
     	} else {
-    		var timeoutID2 = window.setTimeout(function () {
-    			newImg.style.width = self.randomWidth(5, 15);
+    		timerFallDown = window.setTimeout(function () {
+    			newImg.style.width = self.randomWidth(5, 20);
     			newImg.style.opacity = '1';
     		}, 5);
     	}     	
@@ -248,10 +256,17 @@ var BannerPhone = (function () {
 		    rand = Math.floor(rand) + 'px';
 		    return rand;
 	};
-	Constructor.prototype.randomImage = function (min, max) {
-		var randUrl = min + Math.random() * (max + 1 - min);
+	Constructor.prototype.randomImage = function (min, max) {		
+		var randUrl = null;
+		
+		//check for quality of image
+		if (max) {
+			randUrl = min + Math.random() * (max + 1 - min);
 		    randUrl = 'img/effects/raindrop_' + Math.floor(randUrl) + '.png';
-		    return randUrl;
+		} else {
+			randUrl = 'img/effects/raindrop_' + min + '.png';
+		}		
+		return randUrl;
 	};
 	Constructor.prototype.randomType = function () {
 		var arr = ['Big', 'Middle', 'Small'],
@@ -261,8 +276,7 @@ var BannerPhone = (function () {
 	Constructor.prototype.randomSpeed = function (min, max) {
 		var randSpeed = Math.floor(min + Math.random() * (max + 1 - min));
 		return randSpeed;
-	}
-
+	};
 
 	return Constructor;
 })();
