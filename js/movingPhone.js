@@ -94,24 +94,27 @@ var BannerPhone = (function () {
 	};
 
 	Constructor.prototype.loadBanner = function () {
-		var self = this;
+		var self = this,
+			timerLoadBanner;
 		
 		this.dragBar.value = '0'; //for Firefox
 		this.moveEl(this.phone);
-		var timeoutID = window.setTimeout(function () {self.moveEl(self.dragBarWrapper)}, 400);
+		
+		timerLoadBanner = window.setTimeout(function () {self.moveEl(self.dragBarWrapper)}, 400);
 		this.textContent.style.opacity = '1';
 	};
 
 	/*change right bottom text*/
 	Constructor.prototype.fadeText = function (showdNumEl) {
 		var texts = this.textContent.getElementsByTagName('img'),
+			timeoutFadeText,
 			i;
 		
 		for (i = 0; i < texts.length; i++) {
 			if ( texts[i].classList.contains('text-active') ) {				
 				texts[i].classList.remove('text-active');				
 			}
-			var timeoutID = window.setTimeout(function () {
+			timeoutFadeText = window.setTimeout(function () {
 				texts[showdNumEl].classList.add('text-active')
 			}, 100);
 		}
@@ -119,13 +122,15 @@ var BannerPhone = (function () {
 
 	/*flash*/
 	Constructor.prototype.fadeInFlash = function () {
-		var self = this;
+		var self = this,
+			timeoutAnimation,
+			timeoutAnimationWeblit;
 
 		this.flash.style.animation = 'fadeInFlash .4s ease-in-out';
 		this.flash.style.WebkitAnimation = 'fadeInFlash .4s ease-in-out';
 		
-		var timeoutID1 = window.setTimeout ( function () { self.flash.style.animation = ''}, 400),
-			timeoutID1 = window.setTimeout ( function () { self.flash.style.WebkitAnimation = ''}, 400);
+		timeoutAnimation = window.setTimeout ( function () { self.flash.style.animation = ''}, 400),
+		timeoutAnimationWeblit = window.setTimeout ( function () { self.flash.style.WebkitAnimation = ''}, 400);
 
 	};
 
@@ -165,7 +170,8 @@ var BannerPhone = (function () {
 		var self = this,
 			newImg = document.createElement("img"),
 			dropContainer = document.createElement("div"),
-			dropType = this.randomType();
+			dropType = this.randomType(),
+			timerFallDown;
 
     	newImg.setAttribute("src", this.randomImage(1, 3));
     	newImg.classList.add('drop', 'drop' + dropType);
@@ -218,10 +224,11 @@ var BannerPhone = (function () {
 	};
 
 	Constructor.prototype.dropReduce = function (drop) {
-		drop.style.width = '1px';
-		drop.style.transition = 'all 3s';
-		
-		var heightEl = drop.clientHeight + 'px';
+		drop.style.width = '0px';
+		drop.style.transition = 'width 3s';
+		drop.style.WebkitTransition = 'width 3s';
+
+		var heightEl = drop.offsetHeight + 'px';
 		drop.style.height = heightEl;
 	};
 
