@@ -30,7 +30,7 @@
 	position: absolute;
     height: 205px;
     width: 14px;
-    right: 205px;
+    right: 200px;
     top: 265px;   
 }
 .dragBar-vertical {
@@ -39,23 +39,31 @@
 	-webkit-transform: rotate(90deg);
 	-o-transform: rotate(90deg);
 	-moz-transform: rotate(90deg);
-	z-index: 2;
 	position: relative;
-	top: 10px;
+	height: 20px;
+	z-index: 2;
 }
-/*for Chrome, Safari, Opera*/
 #dragBar {
 	-webkit-appearance: none;
 	width: 200px;
-	height: 1px;  
-	background: rgba(174,174,174,0.9);
+	border: none;
 	outline: none;
-	padding: 0;
-	margin: 0;
+	padding: 0;	
+	height: 23px;
+	margin-left: 8px;
 }
 #dragBar:hover,
 #dragBar:focus {
 	cursor: pointer;
+}
+
+/*for Chrome, Safari, Opera*/
+#dragBar::-webkit-slider-runnable-track {
+	background: rgba(174,174,174,0.9);
+	height: 1px;
+	border: none;
+	outline: none;
+	padding: 0;
 }
 #dragBar::-webkit-slider-thumb:hover, 
 #dragBar::-webkit-slider-thumb:focus {  
@@ -67,17 +75,16 @@
     height: 20px;
     border-radius: 50%;
     background: black;
-    cursor: pointer;
+    cursor: pointer; 
+    margin-top: -10px;  
 }
 
 /*for Firefox*/
-#dragBar::-moz-range-track {
-	width: 200px;
-	height: .5px;  
+#dragBar::-moz-range-track {	
+	height: 1px;  
 	background: rgba(174,174,174,0.9);
-	outline: none;
-	padding: 0;
-	margin: 0;
+	position: relative;
+    left: 5px;
 }
 #dragBar::-moz-range-thumb {
 	width: 20px;
@@ -100,6 +107,8 @@
     color: transparent;
 	padding: 0;
 	margin: 0;
+	position: relative;
+	left: 20px;
 }
 #dragBar::-ms-fill-lower {
     background: rgba(174,174,174,0.9);
@@ -109,14 +118,19 @@
     background: rgba(174,174,174,0.9);
     border-radius: 10px;
 }
+#dragBar::-ms-tooltip {
+	display: none;
+}
 #dragBar::-ms-thumb {
-	border: none;
-	width: 20px;
-    height: 20px;
-    border-radius: 50%;
+	border: 1px solid #333;
+    height: 20px; width: 20px;
     background: black;
-    cursor: move;
-    padding: 20px;
+    border-radius: 50%;
+    z-index: 3;
+}
+#dragBar::-ms-thumb:hover,
+#dragBar::-ms-thumb:focus {
+	cursor: move;
 }
 
 

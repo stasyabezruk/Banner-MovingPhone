@@ -16,19 +16,32 @@ var BannerPhone = (function () {
 		
 		this.loadBanner();
 		this.scrollPhone();
-		this.closeBanner();
+		this.closeBanner();		
 	}
+
+	//check for browser
+	Constructor.prototype.typeEvent = function () {
+		var isIE = /*@cc_on!@*/false || !!document.documentMode,
+			typeEvent = null;		
+		
+		if (isIE) {
+			typeEvent ='change';
+		} else {
+			typeEvent = 'input';
+		}
+		return typeEvent;
+	};
 
 	Constructor.prototype.scrollPhone = function () {
 		var self = this,
-			oldValRange = self.dragBar.value;
+			oldValRange = this.dragBar.value,
+			changeEvent = self.typeEvent();
 
-		helper.addEvent('input', self.dragBar, function () {
+		helper.addEvent(changeEvent, self.dragBar, function () {
+			
 			var newValRange = self.dragBar.value,
 			    newBgPos = -Number(221*newValRange);
-			    
-			    //console.log(newValRange);			    
-				
+
 				self.phone.style.backgroundPosition = '-30px ' + newBgPos + 'px';
 
 				//check the direction of input-range
@@ -85,6 +98,7 @@ var BannerPhone = (function () {
 			animate = window.setTimeout ( function () {
 				self.moveEl(el);
 			}, 25);	
+
 		if (el.offsetTop == 15) {			
 			window.clearTimeout(animate);
 			
@@ -143,7 +157,7 @@ var BannerPhone = (function () {
 	};
 
 	/*RAIN DROPS*/
-	Constructor.prototype.renderDrops = function (isRaining) {
+	Constructor.prototype.renderDrops = function () {
 		var self = this,
 			i;
 		
