@@ -78,6 +78,11 @@
     cursor: pointer; 
     margin-top: -10px;  
 }
+/*for Safari*/
+.dragSafari #dragBar {
+	height: 1px;
+	background: rgba(174,174,174,0.9);
+}
 
 /*for Firefox*/
 #dragBar::-moz-range-track {	
@@ -92,6 +97,7 @@
     border-radius: 50%;
     background: black;
     cursor: pointer;
+    border: 0;
 }
 #dragBar::-moz-range-thumb:hover,
 #dragBar::-moz-range-thumb:focus {
@@ -107,32 +113,32 @@
     color: transparent;
 	padding: 0;
 	margin: 0;
-	position: relative;
-	left: 20px;
 }
 #dragBar::-ms-fill-lower {
     background: rgba(174,174,174,0.9);
-    border-radius: 10px;
 }
 #dragBar::-ms-fill-upper {
     background: rgba(174,174,174,0.9);
-    border-radius: 10px;
 }
 #dragBar::-ms-tooltip {
 	display: none;
 }
-#dragBar::-ms-thumb {
-	border: 1px solid #333;
-    height: 20px; width: 20px;
+#dragBar::-ms-thumb {	
+    height: 20px; 
+    width: 20px;
     background: black;
     border-radius: 50%;
     z-index: 3;
+    border: 0;
 }
 #dragBar::-ms-thumb:hover,
 #dragBar::-ms-thumb:focus {
 	cursor: move;
 }
-
+/*for Edge*/
+.dragEdge #dragBar {
+	height: 33px;
+}
 
 .left-col { 
 	width: 280px;

@@ -16,10 +16,11 @@ var BannerPhone = (function () {
 		
 		this.loadBanner();
 		this.scrollPhone();
-		this.closeBanner();		
+		this.closeBanner();
+		this.crossBrowserStyles();	
 	}
 
-	//check for browser
+	//check browser to find the type of event (input or change), when the phone is moving
 	Constructor.prototype.typeEvent = function () {
 		var isIE = /*@cc_on!@*/false || !!document.documentMode,
 			typeEvent = null;		
@@ -30,6 +31,20 @@ var BannerPhone = (function () {
 			typeEvent = 'input';
 		}
 		return typeEvent;
+	};
+
+	//check browser (Edge or Safari) to add additional styles (Cross-browser compatibility)
+	Constructor.prototype.crossBrowserStyles = function () {
+		var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0,
+			isIE = /*@cc_on!@*/false || !!document.documentMode,
+			isEdge = !isIE && !!window.StyleMedia;					
+		
+		if (isSafari) {
+			this.dragBarWrapper.classList.add('dragSafari');
+		}
+		if (isEdge) {
+			this.dragBarWrapper.classList.add('dragEdge');
+		}
 	};
 
 	Constructor.prototype.scrollPhone = function () {
